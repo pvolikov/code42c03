@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pvolikov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 19:15:41 by pvolikov          #+#    #+#             */
-/*   Updated: 2025/05/09 14:06:32 by pvolikov         ###   ########.fr       */
+/*   Updated: 2025/05/09 14:06:03 by pvolikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *dest, char *src)
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
 	int		i;
 	char	*c;
@@ -19,7 +19,7 @@ char	*ft_strcat(char *dest, char *src)
 	while (*c != '\0')
 		c++;
 	i = 0;
-	while (src[i] != '\0')
+	while (src[i] != '\0' && i < nb)
 	{
 		c[i] = src[i];
 		i++;
@@ -34,11 +34,18 @@ int	main(void)
 {
 	char	s0[] = "abcdXXXXXXXXXXXXXXXXXX";
 	char	s1[] = "efghijk";
+	int	n;
 
 	s0[4] = '\0';
 
-	printf("%s + %s\n", s0, s1);
-	ft_strcat(s0, s1);
+	n = 10;
+	printf("%s + %s (%d)\n", s0, s1, n);
+	ft_strncat(s0, s1, n);
+	printf("=%s\n", s0);
+
+	n = 3;
+	printf("%s + %s (%d)\n", s0, s1, n);
+	ft_strncat(s0, s1, n);
 	printf("=%s\n", s0);
 
 //	printf("%s + %s\n", t0, t1);
